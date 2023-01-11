@@ -19,14 +19,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    this.authService.autenticar(this.usuario, this.senha).subscribe(
-      () => {
+    this.authService.autenticar(this.usuario, this.senha).subscribe({
+      next: () => {
         this.router.navigate(['animais']);
       },
-      (error) => {
-        alert('Usúario ou senha inválido');
-        console.log(error);
-      }
-    );
+      error: (erro) => {
+        alert('Usúario ou senha inválido(s)!');
+        console.log(erro);
+      },
+    });
   }
 }
